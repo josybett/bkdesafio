@@ -1,0 +1,92 @@
+[
+     {
+          "id": 1,
+          "title": "Aceite de Limón",
+          "description": "Aceite esencial de limón",
+          "price": 20,
+          "thumbnail": "Sin imagen",
+          "code": "aelm001",
+          "stock": 25
+     },
+     {
+          "id": 2,
+          "title": "Aceite de Menta",
+          "description": "Aceite esencial de menta",
+          "price": 21,
+          "thumbnail": "Sin imagen",
+          "code": "aemt002",
+          "stock": 15
+     },
+     {
+          "id": 3,
+          "title": "Aceite de Árbol de Té",
+          "description": "Aceite esencial de árbol de té",
+          "price": 21.32,
+          "thumbnail": "Sin imagen",
+          "code": "aeat003",
+          "stock": 18
+     },
+     {
+          "id": 4,
+          "title": "Aceite de Cedro",
+          "description": "Aceite esencial de credo",
+          "price": 17,
+          "thumbnail": "Sin imagen",
+          "code": "aecd004",
+          "stock": 24
+     },
+     {
+          "id": 5,
+          "title": "Aceite de Naranja",
+          "description": "Aceite esencial de naranja",
+          "price": 17,
+          "thumbnail": "Sin imagen",
+          "code": "aenj005",
+          "stock": 5
+     },
+     {
+          "id": 6,
+          "title": "Aceite de Orégano",
+          "description": "Aceite esencial de orégano",
+          "price": 31,
+          "thumbnail": "Sin imagen",
+          "code": "aeog006",
+          "stock": 9
+     },
+     {
+          "id": 7,
+          "title": "Aceite de Apio",
+          "description": "Aceite esencial de apio",
+          "price": 34,
+          "thumbnail": "Sin imagen",
+          "code": "aeap007",
+          "stock": 12
+     },
+     {
+          "id": 8,
+          "title": "Aceite de Mandarina",
+          "description": "Aceite esencial de mandarina",
+          "price": 19,
+          "thumbnail": "Sin imagen",
+          "code": "aemd008",
+          "stock": 12
+     },
+     {
+          "id": 9,
+          "title": "Aceite de Canela",
+          "description": "Aceite esencial de canela",
+          "price": 15,
+          "thumbnail": "Sin imagen",
+          "code": "aecc009",
+          "stock": 120
+     },
+     {
+          "id": 10,
+          "title": "Aceite de Coco",
+          "description": "Aceite fraccionado de coco",
+          "price": 15,
+          "thumbnail": "Sin imagen",
+          "code": "aecc010",
+          "stock": 120
+     }
+]
