@@ -88,5 +88,27 @@
           "thumbnail": "Sin imagen",
           "code": "aecc010",
           "stock": 120
+     },
+     {
+          "id": 11,
+          "title": "Agenda 2024",
+          "description": "agenda",
+          "code": "agenda2024",
+          "price": 500,
+          "status": true,
+          "stock": 120,
+          "category": "Acessorios",
+          "thumbnail": []
+     },
+     {
+          "id": 12,
+          "title": "Agenda 2024",
+          "description": "agenda",
+          "code": "agenda2025",
+          "price": 500,
+          "status": false,
+          "stock": 12,
+          "category": "Acessorios",
+          "thumbnail": []
      }
 ]

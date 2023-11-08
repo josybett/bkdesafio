@@ -1,17 +1,23 @@
-const fs = require('fs')
-const path = require('path')
+import path from 'path'
+import fs from 'fs'
+import __dirname from './utils.js';
 
-class ProductManager {
+export class ProductManager {
     constructor() {
         this.products = []
         this.path = path.join(__dirname, 'productos.json')
     }
 
-    async addProduct(title, description, price, thumbnail, code, stock) {
+    async addProduct(request) {
+        let {title, description, code, price, stock, category, thumbnail} = request
         try {
-            if (!title || !description || !price || !thumbnail || !code || !stock) {
+            if (!title || !description || !price || !code || !stock || !category) {
                 console.log('Todos los parámetros son requeridos')
-                return
+                return {
+                    'success': false,
+                    'code': 400,
+                    'message': 'Todos los parámetros son requeridos',
+                }
             }
     
             let products = await this.getProducts();
@@ -19,23 +25,39 @@ class ProductManager {
             let valCode = products.find(prod=>prod.code===code)
             if (valCode) {
                 console.log(`Ya se encuentra registrado code: ${code}`)
-                return
+                return {
+                    'success': false,
+                    'code': 400,
+                    'message': `Ya se encuentra registrado code: ${code}`,
+                }
             }
     
             let newProduct = {
                 id,
                 title,
                 description,
-                price,
-                thumbnail,
                 code,
-                stock
+                price,
+                status: true,
+                stock,
+                category,
+                thumbnail: thumbnail ?? [],
             }
     
             products.push(newProduct)
             await this.saveFile(products)
+            return {
+                'success': true,
+                'code': 200,
+                'message': `Creado con éxito producto con code: ${code}`,
+            }
         } catch (error) {
             console.log('addProduct error: ',error.message)
+            return {
+                'success': false,
+                'code': 500,
+                'message': `Error: ${error.message}`,
+            }
         }
     }
 
@@ -84,10 +106,14 @@ class ProductManager {
             let indexProduct = products.findIndex(prod=>prod.id===id)
             if (indexProduct === -1) {
                 console.log(`No existe producto con id: ${id}`)
-                return
+                return {
+                    'success': false,
+                    'code': 400,
+                    'message': `No existe producto con id: ${id}`,
+                }
             }
 
-            const keys = ['title', 'description', 'price', 'thumbnail', 'stock']
+            const keys = ['title', 'description', 'price', 'thumbnail', 'stock', 'status', 'category']
             let prod = Object.fromEntries(Object.entries(updProduct).
                             filter(([k, v]) => 
                                 (((v != null && v != '') || v > 0 ) && keys.includes(k))
@@ -99,8 +125,18 @@ class ProductManager {
             }
             await this.saveFile(products)
             console.log(`Producto editado con id: ${id}`)
+            return {
+                'success': true,
+                'code': 200,
+                'message': `Producto editado con id: ${id}`,
+            }
         } catch (error) {
             console.log('updateProduct error: ',error.message)
+            return {
+                'success': false,
+                'code': 500,
+                'message': `Error: ${error.message}`,
+            }
         }
     }
 
@@ -110,30 +146,29 @@ class ProductManager {
             let indexProduct = products.findIndex(prod=>prod.id===id)
             if (indexProduct === -1) {
                 console.log(`No existe producto con id: ${id}`)
-                return
+                return {
+                    'success': false,
+                    'code': 404,
+                    'message': `No existe producto con id: ${id}`,
+                }
             }
             products.splice(indexProduct, 1)
             this.saveFile(products)
             console.log(`Ha sido eliminado el producto con id: ${id}`)
+            return {
+                'success': true,
+                'code': 200,
+                'message': `Ha sido eliminado el producto con id: ${id}`,
+            }
         } catch (error) {
             console.log('deleteProductById error: ',error.message)
+            return {
+                'success': false,
+                'code': 500,
+                'message': `Error: ${error.message}`,
+            }
         }
     }
 }
 
-module.exports = ProductManager
-/*
-
-const desafio = (async() => {
-    let pm = new ProductManager('./products.json')
-    console.log(await pm.getProducts())
-    await pm.addProduct('computador','Este es un producto prueba',2000,'Sin imagen','qwe123',25)
-    console.log(await pm.getProducts())
-    await pm.addProduct('producto prueba','Este es un producto prueba',200,'Sin imagen','abc123',25)
-    await pm.addProduct('producto prueba 2','Este es un producto prueba',300,'Sin imagen','def456',35)
-    await pm.updateProduct(3, {title: 'laptop', description: 'portatil', price: 4000, code: '', stock: 0})
-    await pm.deleteProductById(1)
-})
-
-desafio()
-*/
+//module.exports = ProductManager
