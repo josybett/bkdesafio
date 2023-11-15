@@ -9,7 +9,9 @@ export class ProductManager {
     }
 
     async addProduct(request) {
-        let {title, description, code, price, stock, category, thumbnail} = request
+        console.log(request)
+
+        let {title, description, code, price, stock, category, thumbnails, io} = request
         try {
             if (!title || !description || !price || !code || !stock || !category) {
                 console.log('Todos los parámetros son requeridos')
@@ -17,6 +19,17 @@ export class ProductManager {
                     'success': false,
                     'code': 400,
                     'message': 'Todos los parámetros son requeridos',
+                    'data': []
+                }
+            }
+            price = parseFloat(price)
+            stock = parseFloat(stock)
+            if (Number.isNaN(price) || Number.isNaN(stock)) {
+                return {
+                    'success': false,
+                    'code': 400,
+                    'message': 'Price y Stock deben se numéricos',
+                    'data': []
                 }
             }
     
@@ -29,6 +42,7 @@ export class ProductManager {
                     'success': false,
                     'code': 400,
                     'message': `Ya se encuentra registrado code: ${code}`,
+                    'data': []
                 }
             }
     
@@ -41,15 +55,15 @@ export class ProductManager {
                 status: true,
                 stock,
                 category,
-                thumbnail: thumbnail ?? [],
+                thumbnails: Array.isArray(thumbnails) ? thumbnails : [],
             }
-    
             products.push(newProduct)
             await this.saveFile(products)
             return {
                 'success': true,
                 'code': 200,
                 'message': `Creado con éxito producto con code: ${code}`,
+                'data': newProduct
             }
         } catch (error) {
             console.log('addProduct error: ',error.message)
@@ -57,6 +71,7 @@ export class ProductManager {
                 'success': false,
                 'code': 500,
                 'message': `Error: ${error.message}`,
+                'data': []
             }
         }
     }
@@ -113,14 +128,21 @@ export class ProductManager {
                 }
             }
 
-            const keys = ['title', 'description', 'price', 'thumbnail', 'stock', 'status', 'category']
+            const keysString = ['title', 'description', 'thumbnails', 'category']
+            const keysNumber = ['price', 'stock']
+            const keysBool = ['status']
             let prod = Object.fromEntries(Object.entries(updProduct).
                             filter(([k, v]) => 
-                                (((v != null && v != '') || v > 0 ) && keys.includes(k))
+                                (((v != null && v != '') || v > 0 ) && keysString.includes(k)) ||
+                                ((keysNumber.includes(k)) && !isNaN(parseInt(v))) ||
+                                ((keysBool.includes(k)) && typeof v ==='boolean')
                             ))
             products[indexProduct] = {
                 ...products[indexProduct],
                 ...prod,
+                price: (prod.price) ? parseFloat(prod.price) : products[indexProduct].price,
+                stock: (prod.stock) ? parseFloat(prod.stock) : products[indexProduct].stock,
+                thumbnails: (prod.thumbnails && Array.isArray(prod.thumbnails)) ? prod.thumbnails : [],
                 id
             }
             await this.saveFile(products)
@@ -170,5 +192,3 @@ export class ProductManager {
         }
     }
 }
-
-//module.exports = ProductManager

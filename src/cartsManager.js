@@ -1,6 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import __dirname from './utils.js';
+import { ProductManager } from './productManager.js';
 
 export class CartsManager {
     constructor() {
@@ -98,6 +99,7 @@ export class CartsManager {
             }
         }
 
+        let message = `Producto editado con id: ${pid}`
         let productsCarts = carts[indexCart].products
         let prod = {
             product: pid,
@@ -110,7 +112,13 @@ export class CartsManager {
                 quantity: ( Number(productsCarts[index].quantity) + Number(qt))
             }
         } else {
-            productsCarts.push(prod)
+            const pm = new ProductManager()
+            let prodById = await pm.getProductById(pid)
+            if (!Array.isArray(prodById)) {
+                productsCarts.push(prod)
+            } else {
+                message = `No existe producto con id: ${pid}`
+            }
         }
         carts[indexCart].products = productsCarts
         await this.saveFile(carts)
@@ -118,7 +126,7 @@ export class CartsManager {
             return {
                 'success': true,
                 'code': 200,
-                'message': `Producto editado con id: ${pid}`,
+                'message': message,
                 'data': productsCarts
             }
     }

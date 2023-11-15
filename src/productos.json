@@ -4,7 +4,7 @@
           "title": "Aceite de Limón",
           "description": "Aceite esencial de limón",
           "price": 20,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aelm001",
           "stock": 25
      },
@@ -13,7 +13,7 @@
           "title": "Aceite de Menta",
           "description": "Aceite esencial de menta",
           "price": 21,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aemt002",
           "stock": 15
      },
@@ -22,7 +22,7 @@
           "title": "Aceite de Árbol de Té",
           "description": "Aceite esencial de árbol de té",
           "price": 21.32,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aeat003",
           "stock": 18
      },
@@ -31,7 +31,7 @@
           "title": "Aceite de Cedro",
           "description": "Aceite esencial de cedro",
           "price": 17,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aecd004",
           "stock": 24
      },
@@ -40,7 +40,7 @@
           "title": "Aceite de Naranja",
           "description": "Aceite esencial de naranja",
           "price": 17,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aenj005",
           "stock": 5
      },
@@ -49,7 +49,7 @@
           "title": "Aceite de Orégano",
           "description": "Aceite esencial de orégano",
           "price": 31,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aeog006",
           "stock": 9
      },
@@ -58,7 +58,7 @@
           "title": "Aceite de Apio",
           "description": "Aceite esencial de apio",
           "price": 34,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aeap007",
           "stock": 12
      },
@@ -67,7 +67,7 @@
           "title": "Aceite de Mandarina",
           "description": "Aceite esencial de mandarina",
           "price": 19,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aemd008",
           "stock": 12
      },
@@ -76,7 +76,7 @@
           "title": "Aceite de Canela",
           "description": "Aceite esencial de canela",
           "price": 15,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aecc009",
           "stock": 120
      },
@@ -85,30 +85,8 @@
           "title": "Aceite de Coco",
           "description": "Aceite fraccionado de coco",
           "price": 15,
-          "thumbnail": "Sin imagen",
+          "thumbnails": [],
           "code": "aecc010",
           "stock": 120
-     },
-     {
-          "id": 11,
-          "title": "Agenda 2024",
-          "description": "agenda",
-          "code": "agenda2024",
-          "price": 500,
-          "status": true,
-          "stock": 120,
-          "category": "Acessorios",
-          "thumbnail": []
-     },
-     {
-          "id": 12,
-          "title": "Agenda 2024",
-          "description": "agenda",
-          "code": "agenda2025",
-          "price": 500,
-          "status": false,
-          "stock": 12,
-          "category": "Acessorios",
-          "thumbnail": []
      }
 ]
