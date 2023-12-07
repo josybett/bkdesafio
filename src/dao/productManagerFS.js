@@ -1,8 +1,8 @@
 import path from 'path'
 import fs from 'fs'
-import __dirname from './utils.js';
+import __dirname from '../utils.js';
 
-export class ProductManager {
+export class ProductManagerFS {
     constructor() {
         this.products = []
         this.path = path.join(__dirname, 'productos.json')

@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/3.6.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/chat.css">
+
+<div class="clearfix">
+  <div class="chat">
+    <div class="chat-history">
+        <ul id="messages-list">
+          {{#each messages}}
+            <li class="clearfix">
+              <div class="message-data align-right">
+                <span class="message-data-name" >{{this.user}}</span> <i class="fa fa-circle me"></i>
+                
+              </div>
+              <div class="message other-message float-right">
+                {{this.message}}
+              </div>
+            </li>
+          {{/each}}
+          <!--<li class="clearfix">
+            <div class="message-data align-right">
+              <span class="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
+              <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+              
+            </div>
+            <div class="message other-message float-right">
+              Hi Vincent, how are you? How is the project coming along?
+            </div>
+          </li>
+          
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+              <span class="message-data-time">10:12 AM, Today</span>
+            </div>
+            <div class="message my-message">
+              Are we meeting today? Project has been already finished and I have results to show you.
+            </div>
+          </li>
+          <li class="clearfix">
+            <div class="message-data align-right">
+              <span class="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
+              <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+              
+            </div>
+            <div class="message other-message float-right">
+              Hi Vincent, how are you? How is the project coming along?
+            </div>
+          </li>
+          
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+              <span class="message-data-time">10:12 AM, Today</span>
+            </div>
+            <div class="message my-message">
+              Are we meeting today? Project has been already finished and I have results to show you.
+            </div>
+          </li>-->
+        </ul>
+    </div>
+    <div class="chat-message clearfix">
+      <textarea class="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+      <button>ENVIAR</button>
+    </div>
+  </div>
+</div>
+
+<script src="socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="js/chat.js"></script>

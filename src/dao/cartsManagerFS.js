@@ -1,9 +1,9 @@
 import path from 'path'
 import fs from 'fs'
-import __dirname from './utils.js';
-import { ProductManager } from './productManager.js';
+import __dirname from '../utils.js';
+import { ProductManagerFS } from './productManagerFS.js';
 
-export class CartsManager {
+export class CartsManagerFS {
     constructor() {
         this.path = path.join(__dirname, 'carritos.json')
     }
@@ -112,7 +112,7 @@ export class CartsManager {
                 quantity: ( Number(productsCarts[index].quantity) + Number(qt))
             }
         } else {
-            const pm = new ProductManager()
+            const pm = new ProductManagerFS()
             let prodById = await pm.getProductById(pid)
             if (!Array.isArray(prodById)) {
                 productsCarts.push(prod)

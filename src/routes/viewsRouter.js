@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { ProductManager } from '../productManager.js';
+import { ProductManagerMongo } from '../dao/productManagerMongo.js';
+import { MessageManager } from '../dao/messageManager.js';
 
 export const router=Router()
-const pm = new ProductManager()
+const pm = new ProductManagerMongo()
+const mm = new MessageManager()
 
 router.get('/', async (req,res)=>{
     let products = await pm.getProducts()
@@ -14,11 +16,7 @@ router.get('/realtimeproducts', async (req,res)=>{
     res.status(200).render('realTimeProducts', {products})
 })
 
-// router.get('/heroes',(req,res)=>{
-
-//     let heroes=heroesManager.getHeroes()
-
-//     res.status(200).render('heroes', {
-//         heroes
-//     })
-// })
+router.get('/chat', async (req, res) => {
+    let messages = await mm.getMessages()
+    res.status(200).render('chat', {messages})
+})
